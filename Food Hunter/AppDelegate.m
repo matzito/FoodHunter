@@ -7,23 +7,71 @@
 //
 
 #import "AppDelegate.h"
-
-#import "ViewController.h"
-
+#import "AboutViewController.h"
+#import "HomeViewController.h"
+#import "ShareViewController.h"
+#import "MeViewController.h"
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
-    } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }
-    self.window.rootViewController = self.viewController;
+   
+    UIViewController *homeViewController = [[HomeViewController alloc] initWithNibName:@"HomeViewController" bundle:nil];
+    UIViewController *aboutViewControler = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    UIViewController *shareViewControler = [[ShareViewController alloc] initWithNibName:@"ShareViewController" bundle:nil];
+    UIViewController *meViewControler = [[MeViewController alloc] initWithNibName:@"MeViewController" bundle:nil];
+
+    
+    UINavigationController *navigationController1 = [[UINavigationController alloc] initWithRootViewController:homeViewController];
+    
+    UINavigationController *navigationController2 = [[UINavigationController alloc] initWithRootViewController:shareViewControler];
+    UINavigationController *navigationController3 = [[UINavigationController alloc] initWithRootViewController:meViewControler];
+    
+    
+ 
+    navigationController1.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    navigationController2.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    navigationController3.navigationBar.barStyle = UIBarStyleBlackOpaque;
+
+    self.tabBarController = [[UITabBarController alloc] init] ;
+    self.tabBarController.viewControllers = @[navigationController1, navigationController2, navigationController3,aboutViewControler];
+    
+    
+    
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    [self customizeAppearance];
     return YES;
+
+}
+
+
+- (void)customizeAppearance
+{
+    // Create resizable images
+    UIImage *gradientTop = [[UIImage imageNamed:@"top"]
+                                resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    
+    UIImage *gradientBot = [[UIImage imageNamed:@"tab"]
+                            resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 220, 0)];
+
+    [[UINavigationBar appearance] setBackgroundImage:gradientTop
+                                       forBarMetrics:UIBarMetricsDefault];
+    
+    [[UITabBar appearance] setBackgroundImage:gradientBot];
+
+    [[UITabBar appearance] setSelectionIndicatorImage:[[UIImage alloc] init]];
+    
+    [[UITabBarItem appearance]  setTitlePositionAdjustment:UIOffsetMake(0, -2)];
+    
+    [[UITabBar appearance] setSelectedImageTintColor:[UIColor grayColor]];
+
+  
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
