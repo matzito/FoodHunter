@@ -569,6 +569,7 @@
 				GCC_PREFIX_HEADER = "Food Hunter/Food Hunter-Prefix.pch";
 				INFOPLIST_FILE = "Food Hunter/Food Hunter-Info.plist";
 				PRODUCT_NAME = "Food Hunter";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -580,6 +581,7 @@
 				GCC_PREFIX_HEADER = "Food Hunter/Food Hunter-Prefix.pch";
 				INFOPLIST_FILE = "Food Hunter/Food Hunter-Info.plist";
 				PRODUCT_NAME = "Food Hunter";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
